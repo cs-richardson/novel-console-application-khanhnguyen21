@@ -61,14 +61,16 @@ def addNovelWindow():
 
     novelTitle = tk.StringVar(addNovel)
     novelAuthor = tk.StringVar(addNovel)
+    authorChoices = {'Haruki Murakami', 'Karl Popper', 'Yukio Mishima', 'Fyodor Dostoyevsky', "Marxim Gorky"}
+    novelAuthor.set('Karl Popper')
     novelPrice = tk.StringVar(addNovel)
     novelGenre = tk.StringVar(addNovel)
     
     lblT = Label(addNovelFrame, text = 'Enter a novel title').pack()
     title = Entry(addNovelFrame, text = 'Novel Title Here', textvariable = novelTitle).pack()
     
-    lblA = Label(addNovelFrame, text = 'Enter the author').pack()
-    author = Entry(addNovelFrame, text = 'Novel Author Here', textvariable = novelAuthor).pack()
+    lblA = Label(addNovelFrame, text = 'Select the author').pack()
+    author = OptionMenu(addNovelFrame, novelAuthor, *authorChoices).pack()
 
     lblP = Label(addNovelFrame, text = 'Enter the price').pack()
     author = Entry(addNovelFrame, text = 'Novel Price Here', textvariable = novelPrice).pack()
