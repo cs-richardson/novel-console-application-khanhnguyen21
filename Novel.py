@@ -4,7 +4,7 @@ from tkinter import messagebox
 from datetime import datetime, date
 #Functions
 import sqlite3 as sq
-con = sq.connect("/Users/apple/Documents/NovelApp/DBNovel.db")
+con = sq.connect("/Users/apple/Documents/GitHub/novel-console-application-khanhnguyen21/DBNovel.db")
 c = con.cursor()
 
 def getNovel():
@@ -46,7 +46,7 @@ def listNovelWindow():
     for row in novels:
         for field in row:
             tbl += str(field)
-            tbl += ", "
+            tbl += "|"
         tbl += "\n"
         tbl += "\n"
     messagebox.showinfo("Novel List", tbl)
