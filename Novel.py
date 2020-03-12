@@ -13,13 +13,19 @@ def getNovel():
     return data
 
 def insertNovel(NovelName, Author, BookPrice, BookGenre):
-    try:
-        insertAuthor = c.execute("INSERT INTO Author(AuthorName)Values(?)",(str(Author),))
-        insertNovel = c.execute("INSERT INTO Book(Title, Price, Genre) Values(?, ?, ?)",(str(NovelName), int(BookPrice), str(BookGenre)))
-        insertWrote = c.execute("INSERT INTO Wrote(AuthorID, ISBN)Values((SELECT MAX(AuthorID) FROM AUTHOR), (SELECT MAX(ISBN) FROM Book))")
-        con.commit()
-    except ValueError:
-        messagebox.showinfo('Error', 'Price not numeric. Please fix them.')
+    if NovelName and Author and BookPrice and BookGenre:
+        try:
+            insertAuthor = c.execute("INSERT INTO Author(AuthorName)Values(?)",(str(Author),))
+            insertNovel = c.execute("INSERT INTO Book(Title, Price, Genre) Values(?, ?, ?)",(str(NovelName), int(BookPrice), str(BookGenre)))
+            insertWrote = c.execute("INSERT INTO Wrote(AuthorID, ISBN)Values((SELECT MAX(AuthorID) FROM AUTHOR), (SELECT MAX(ISBN) FROM Book))")
+            con.commit()
+            messagebox.showinfo('Success', 'Data entered successfully')
+        except ValueError:
+            messagebox.showinfo('Error', 'Price not numeric. Please fix them.')
+        except:
+            messagebox.showinfo('Error', 'Unexpected error')
+    else:
+        messagebox.showinfo('Error', 'Please enter some data.')
 
 #UI
 def root():
